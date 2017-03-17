@@ -1,0 +1,144 @@
+doctype 5
+html(lang="en")
+	head
+		style(type='text/css').
+			body {
+			background: url(../res/img/gradient.png) no-repeat center;
+			background: url(../res/img/background.png) repeat left top #000;
+			text-align: center;
+			}
+			.rwd-table {
+			margin: 1em 0;
+			min-width: 300px;
+			}
+			.rwd-table tr {
+			border-top: 1px solid #ddd;
+			border-bottom: 1px solid #ddd;
+			}
+			.rwd-table th {
+			display: none;
+			}
+			.rwd-table td {
+			display: block;
+			}
+			.rwd-table td:first-child {
+			padding-top: .5em;
+			}
+			.rwd-table td:last-child {
+			padding-bottom: .5em;
+			}
+			.rwd-table td:before {
+			content: attr(data-th) ": ";
+			font-weight: bold;
+			width: 6.5em;
+			display: inline-block;
+			}
+			@media (min-width: 480px) {
+			.rwd-table td:before {
+			display: none;
+			}
+			}
+			.rwd-table th, .rwd-table td {
+			text-align: left;
+			}
+			@media (min-width: 480px) {
+			.rwd-table th, .rwd-table td {
+			display: table-cell;
+			padding: .25em .5em;
+			}
+			.rwd-table th:first-child, .rwd-table td:first-child {
+			padding-left: 0;
+			}
+			.rwd-table th:last-child, .rwd-table td:last-child {
+			padding-right: 0;
+			}
+			}
+			h1 {
+			font-weight: normal;
+			letter-spacing: -1px;
+			color: #34495E;
+			}
+			.rwd-table {
+			background: #34495E;
+			color: #fff;
+			border-radius: .4em;
+			overflow: hidden;
+			}
+			.rwd-table tr {
+			border-color: #46637f;
+			}
+			.rwd-table th, .rwd-table td {
+			margin: .5em 1em;
+			}
+			@media (min-width: 480px) {
+			.rwd-table th, .rwd-table td {
+			padding: 1em !important;
+			}
+			}
+			.rwd-table th, .rwd-table td:before {
+			color: #dd5;
+			}
+			#userdiv {
+			display: inline-block;
+			}
+			button {
+				width: 350px;
+				height: 28px;
+				border-radius: 3px;
+				border: 1px solid rgba(0, 0, 0, 0);
+				padding: 2px 26px 2px 5px;
+				font-family: "Lucida Grande", "Lucida Sans Unicode", sans-serif;
+				-ms-box-sizing: border-box;
+				-moz-box-sizing: border-box;
+				-webkit-box-sizing: border-box;
+				box-sizing: border-box;
+			}
+		script(type="text/javascript", src='../res/js/jquery-3.1.1.min.js')
+		script(type="text/javascript").
+				$(document).ready(function() {
+					$('#enroll').click(function() {
+						var mobile = $('#mobile').val();
+						window.location.href = 'enroll?mobile=' + mobile;
+					});
+					$('#home').click(function() {
+						window.location.href = '/';
+					});
+				});
+
+	body
+		div#userdiv
+			input#mobile(type='hidden', value=stud.mobile)
+			table.rwd-table
+				tr
+					th First Name
+					th Last Name
+					th Gender
+					th Mobile
+					th E-mail
+					th College
+					th Department
+					th Year
+					th Events Only
+				tr
+					td(data-th='First Name') #{stud.fname}
+					td(data-th='Second Name') #{stud.lname}
+					td(data-th='Gender') #{stud.gender}
+					td(data-th='Mobile') #{stud.mobile}
+					td(data-th='E-mail') #{stud.email}
+					td(data-th='College') #{stud.clg}
+					td(data-th='Department') #{stud.dept}
+					td(data-th='Year') #{stud.year}
+					if(stud.events == '1')
+						td(data-th='Events') Yes
+					else
+						td(data-th='Events') No
+			table.rwd-table
+				tr
+					th Workshops Enrolled
+				tr
+					-for(var i = 0; i < workshops.length; i++)
+						td #{workshops[i].offer_title}
+			button#enroll Enroll
+			br
+			br
+			button#home Go Back to Home Page

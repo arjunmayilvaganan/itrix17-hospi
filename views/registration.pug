@@ -1,0 +1,82 @@
+doctype5
+html(lang='en')
+	head
+		link(rel='stylesheet', type='text/css', media='screen', href='res/css/jquery-ui.min.css')
+		style(type='text/css').
+			body {
+			background: url(../res/img/gradient.png) no-repeat center;
+			background: url(../res/img/background.png) repeat left top #000;
+			}
+			.regform {
+			width: 350px;
+			height: 28px;
+			border-radius: 3px;
+			border: 1px solid rgba(0, 0, 0, 0);
+			padding: 2px 26px 2px 5px;
+			font-family: "Lucida Grande", "Lucida Sans Unicode", sans-serif;
+			-ms-box-sizing: border-box;
+			-moz-box-sizing: border-box;
+			-webkit-box-sizing: border-box;
+			box-sizing: border-box;
+			}
+			#formdiv {
+			position: absolute;
+			width: 350px;
+			height: 426px;
+			top: 50%;
+			left: 50%;
+			margin: -213px 0 0 -175px;
+			}
+		script(type='text/javascript', src='../res/js/jquery-3.1.1.min.js')
+		script(type='text/javascript', src='../res/js/jquery.validate.min.js')
+		script(type='text/javascript', src='../res/js/jquery-ui.min.js')
+		script(type='text/javascript', src='../res/js/main.js')
+		script(type="text/javascript").
+			$(document).ready(function() {
+				$("#home").click(function() {
+					window.location.href = '/';
+				});
+			});
+	body
+		#formdiv
+			button#home.regform Go Back to Home Page
+			br
+			br
+			br
+			form#regForm
+				input#mobile(type='hidden', value=mobile)
+				input#first_name.regform(type='text', name='firstname', placeholder='First Name')
+				br
+				br
+				input#last_name.regform(type='text', name='lastname', placeholder='Last Name')
+				br
+				br
+				input(type='radio', name='sex', value='female')
+				span.text(style='color: white;') Female
+				input(type='radio', name='sex', value='male')
+				span.text(style='color: white;') Male
+				input(type='radio', name='sex', value='other')
+				span.text(style='color: white;') Other
+				br
+				br
+				input#email.regform(type='text', name='email', placeholder='Email')
+				br
+				br
+				input#clg.regform(name='clg', placeholder='Search your college')
+				br
+				br
+				input#dept.regform(name='dept', placeholder='Search you branch of study')
+				br
+				br
+				select#year.regform(name='year')
+					option(label='Year', selected='', disabled='') Year
+					option(value='1', label='1') 1
+					option(value='2', label='2') 2
+					option(value='3', label='3') 3
+					option(value='4', label='4') 4
+					option(value='5', label='5') 5
+				br
+				br
+				br
+				input#mobile(type='hidden')
+				button#regsubmit.regform(type='submit') Submit

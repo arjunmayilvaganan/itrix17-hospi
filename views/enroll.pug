@@ -1,0 +1,79 @@
+doctype 5
+html(lang="en")
+	head
+		style(type='text/css').
+			body {
+			background: url(../res/img/gradient.png) no-repeat center;
+			background: url(../res/img/background.png) repeat left top #000;
+			}
+			.enrollForm {
+				width: 350px;
+				height: 28px;
+				border-radius: 3px;
+				border: 1px solid rgba(0, 0, 0, 0);
+				padding: 2px 26px 2px 5px;
+				font-family: "Lucida Grande", "Lucida Sans Unicode", sans-serif;
+				-ms-box-sizing: border-box;
+				-moz-box-sizing: border-box;
+				-webkit-box-sizing: border-box;
+				box-sizing: border-box;
+			}
+			#enrolldiv {
+				position: absolute;
+				width: 350px;
+				height: 304px;
+				top: 50%;
+				left: 50%;
+				margin: -157px 0 0 -175px;
+			}
+		script(type="text/javascript", src='../res/js/jquery-3.1.1.min.js')
+		script(type="text/javascript").
+			$(document).ready(function() {
+				$("#home").click(function() {
+					window.location.href = '/';
+				});
+				$("#student").click(function() {
+					var mobile = $("#mobile").val();
+					window.location.href = '/student?mobile='+mobile;
+				});
+				$('button').click(function(event) {
+					if($(this).attr('id') != 'home' && $(this).attr('id') != 'student') {
+						var mobile = $("#mobile").val();
+						var enrollFor = $(this).val();
+						console.log(mobile, enrollFor);
+						$.post('/enroll', {"mobile": mobile, "enrollFor": enrollFor}, function(data) {
+							if(data == 'true')
+								alert('Enrolled for ' + enrollFor);
+							else
+								alert('error occured');
+						});
+					}
+				});
+			});
+
+
+	body
+		div#enrolldiv
+			input#mobile(type='hidden', value=mobile)
+			button#events.enrollForm(value='Events', style='color: blue;') Events
+			br
+			br
+			button#cloud.enrollForm(value='Cloud & IOT Workshop by Oracle') Cloud and IOT by Oracle
+			br
+			br
+			button#networking.enrollForm(value='CISCO Networking Workshop') CISCO Networking by NetworkGeek
+			br
+			br
+			button#nlp.enrollForm(value='NLP Workshop by IBM') Natural Language Processing by IBM
+			br
+			br
+			button#robotics.enrollForm(value='Mind-Controlled Robot Workshop') Mind Control Robots by Robocart
+			br
+			br
+			button#cogser.enrollForm(value='Cognitive Service Workshop By Microsoft') Cognitive Services by Microsoft
+			br
+			br
+			button#student.enrollForm(style='color: red;') Go Back to Student Details
+			br
+			br
+			button#home.enrollForm(style='color: red;') Go Back to Home Page
