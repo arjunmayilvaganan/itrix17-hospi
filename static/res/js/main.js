@@ -51,26 +51,6 @@ $(document).ready(function() {
 				$.post('/register', req, function(data) {
 					window.location.href = '/enroll?mobile='+req.mobile;
 				});
-				$('#register').addClass('initReg').delay(1900).queue(function() {
-					$(this).removeClass('initReg').addClass('initRegExit');
-					$(this).dequeue();
-				});;
-				$('#page').addClass('target');
-				$('#head').addClass('target');
-				$('.window').addClass('target');
-				$('#page, #head').delay(2500).queue(function() {
-					$(this).addClass('vis');
-					$(this).dequeue();
-				});
-				$('.window').delay(3000).queue(function() {
-					$(this).addClass('windows-vis');
-					$(this).dequeue();
-				});
-				$('#finder').hide();
-				$('#content').hide();
-				$('.details').hide();
-				$('#folder_contents').hide();
-				$('#cfolder_contents').hide();
 			}
 		});
 	});
